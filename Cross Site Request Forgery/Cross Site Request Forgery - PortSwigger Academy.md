@@ -64,9 +64,9 @@ The best way to mitigate this attack is to use a CSRF token.
 
 ### CSRF Token
 
-A CSRF token is a special crafted numeric string that is being generated on the server side and then sent to the web application. The token is being stored on the server for future matching and authentication.
+A CSRF token is a special crafted numeric string that is being generated on the server side and then sent to the web application and authenticates with the server again when a subsequent request occurs. The token is being stored on the server for future matching and authentication.
 
-The server sends the token to the web application and the token is then stored inside a hidden field somewhere on the page.
+The server sends the token to the web application and the token is then stored inside a hidden field somewhere on the page, for it to be later sent back to the server and validate when the form submits.
 
 The use of CSRF tokens as an authenticating parameter is best explained as another layer of security in which a random value is added to one of the required parameters.
 
@@ -74,19 +74,19 @@ As we know, CSRF is executed by sending the exact parameters containing differen
 
 If you add a random value, it is likely that the attacker won't be able to predict it. Moreover, the server on the other side is waiting for the generated token he assigned specifically for the request. 
 
-The attacker has no way of knowing the CSRF token because each token is generated separately on every request. 
+The attacker has no way of knowing the CSRF token because each token is generated separately for different requests. 
 
 Example by steps:
 
 1. Alice wants to connect to bank.com, her browser sends an HTTP request.
 2. The server responds with an HTTP response that contains a generated token.
-3. This token is temporarily saved on the server, waiting for Alice to enter her username and password.
-4. Alice then enters her credentials and logs in. 
-5. The server gives Alice a cookie containing its session ID, saves the token under Alice's session and uses it for future means of authentication whenever Alice performs manipulation on her data.
+3. This token is saved on the server, waiting for Alice to enter her username and password.
+4. Alice then enters her credentials and submits the form with the hidden csrf token.
+5. The server matches the token Alice sent it with the token he stored after he sent it to Alice's web application.
+6. The server gives Alice a cookie containing its session ID, saves the token under Alice's session and uses it for future means of authentication whenever Alice performs manipulation on her data.
 
 This prevents an attacker from executing a CSRF attack since he doesn't know Alice's token.
-
-Unlike a regular attack which abuses only the session, which is provided by the browser automatically.
+Unlike a regular attack which abuses only the session.
 
 Example: 'Random User' receives 'token1' when she opens login.php.
 
@@ -94,7 +94,7 @@ The token is saved in a hidden field somewhere on the page.
 
 Attacker receives 'token2'.
 
-'Random User' logins as Alice and 'Alice' now gets a session ID that is stored inside a cookie. 'token1' is saved within Alice's session data on the server.
+'Random User' logs-in as Alice and 'Alice' now gets a session ID that is stored inside a cookie. 'token1' is saved within Alice's session data on the server.
 
 This way, each request will have to validate itself with the generated token, proving the authenticity of the user and eliminating the option of a forged request, since it will include a different token even if the session is identical. 
 
