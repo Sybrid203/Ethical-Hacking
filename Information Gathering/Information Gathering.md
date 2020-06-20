@@ -1,8 +1,5 @@
 # Information Gathering
 
-Created By: Michael Musheev
-Last Edited: Jun 11, 2020 10:46 PM
-
 So what are the differences between Active recon and Passive recon? Well, as explained in the other note of the five stages of ethical hacking, Active recon is any kind of information gathering that is being directed towards the organization. Putting it in abstract, basically every kind of info gathering that talks to the organization's server's. For example, nmap is considered to be an Active approach since it scans the ports of a machine/network of the organization.
 
 Passive recon is when an attacker uses all kinds of search engines, social networks and more in order to **find information that is already out there**. No tampering with existing servers, services, machines, people, etc.
