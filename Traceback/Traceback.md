@@ -1,7 +1,6 @@
 <html>
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <title>Traceback</title>
   <meta name="generator" content="CherryTree">
   <link rel="stylesheet" href="styles.css" type="text/css" />
 </head>
